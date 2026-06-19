@@ -1,0 +1,51 @@
+services:
+  frontend:
+    build: ./frontend
+    container_name: todo-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - todo-net
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: todo-backend
+    environment:
+      DB_HOST: db
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+    depends_on:
+      - db
+    networks:
+      - todo-net
+    restart: unless-stopped
+    # Tidak ada "ports:" di sini juga sekarang — backend hanya bisa diakses
+    # lewat reverse proxy Nginx di frontend, bukan langsung dari internet.
+
+  db:
+    image: mysql:8.0
+    container_name: todo-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - todo-net
+    restart: unless-stopped
+    # Catatan: sengaja TIDAK ada "ports:" di sini.
+    # DB cuma bisa diakses dari dalam todo-net (oleh backend), tidak diekspos ke publik.
+
+networks:
+  todo-net:
+    driver: bridge
+
+volumes:
+  db-data:

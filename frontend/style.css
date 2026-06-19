@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f3f4f6;
+  display: flex;
+  justify-content: center;
+  padding: 48px 16px;
+  color: #1f2937;
+}
+
+.container {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 32px;
+  width: 100%;
+  max-width: 480px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  color: #6b7280;
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+
+#task-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+#task-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+#task-input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+button {
+  padding: 10px 16px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+#task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#task-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+#task-list li span {
+  flex: 1;
+  font-size: 14px;
+  word-break: break-word;
+}
+
+#task-list li.done span {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.delete-btn {
+  background: #ef4444;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
+.empty-state {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 13px;
+  padding: 16px 0;
+}

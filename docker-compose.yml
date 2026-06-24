@@ -5,6 +5,8 @@ services:
     ports:
       - "80:80"       # ubah dari 8080:80 jadi 80:80
       - "443:443"     # tambahkan ini untuk HTTPS nanti
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro   # ← tambahkan ini
     depends_on:
       - backend
     networks:
